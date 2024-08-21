@@ -25,8 +25,30 @@ class Ball {
     }
 };
 
+class Paddle {
+    public:
+    float x, y;
+    float width, height;
+    int speed;
+
+    void Draw(){
+        DrawRectangle(x, y, width, height, WHITE);
+    }
+
+    void Update(){
+        if (IsKeyDown(KEY_UP)){
+            y = y - speed;
+        }
+        if (IsKeyDown(KEY_DOWN)){
+            y = y + speed;
+        }
+    }
+};
+
 
 Ball ball;
+Paddle player;
+
 
 int main(){
     cout << "Starting Game! \n";
@@ -44,21 +66,28 @@ int main(){
     ball.speed_x = 7;
     ball.speed_y = 7;
 
+    player.width = 25;
+    player.height = 120;
+    player.x = width - player.width - 10;
+    player.y = height /2 - player.height /2;
+    player.speed = 6; 
 
     //Game Loop
     while(!WindowShouldClose()){
         BeginDrawing();
 
         ball.Update();
+        player.Update();
 
         ClearBackground(BLACK);
         DrawLine(width /2, 0, width /2, height, WHITE);
 
         ball.Draw();
+        player.Draw();
 
         //Draw Paddles
         DrawRectangle(10, height /2 - 60, 25, 120, WHITE);
-        DrawRectangle(width-35, height /2 - 60, 25, 120, WHITE);
+        // DrawRectangle(width-35, height /2 - 60, 25, 120, WHITE);
 
         
 
