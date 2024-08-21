@@ -26,6 +26,15 @@ class Ball {
 };
 
 class Paddle {
+protected:
+    void LimitMovment(){
+        if( y <= 0){
+            y = 0;
+        }
+        if ( y + height >= GetScreenHeight()){
+            y = GetScreenHeight() - height;
+        }
+    }
 public:
     float x, y;
     float width, height;
@@ -42,8 +51,7 @@ public:
         if (IsKeyDown(KEY_DOWN)){
             y = y + speed;
         }
-
-        Limit
+        LimitMovment();
     }
 
 };
@@ -57,9 +65,8 @@ class CpuPaddle: public Paddle{
         if (y + height/2 <= ball_y){
             y = y + speed;
         }
+        LimitMovment();
     }
-
-
 };
 
 Ball ball;
