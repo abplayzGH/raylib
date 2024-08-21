@@ -26,7 +26,7 @@ class Ball {
 };
 
 class Paddle {
-    public:
+public:
     float x, y;
     float width, height;
     int speed;
@@ -42,13 +42,29 @@ class Paddle {
         if (IsKeyDown(KEY_DOWN)){
             y = y + speed;
         }
+
+        Limit
     }
+
 };
 
+class CpuPaddle: public Paddle{
+    public:
+    void Update(int ball_y){
+        if ( y + height/2 > ball_y){
+            y = y - speed;
+        }
+        if (y + height/2 <= ball_y){
+            y = y + speed;
+        }
+    }
+
+
+};
 
 Ball ball;
 Paddle player;
-
+CpuPaddle cpu;
 
 int main(){
     cout << "Starting Game! \n";
@@ -72,23 +88,27 @@ int main(){
     player.y = height /2 - player.height /2;
     player.speed = 6; 
 
+    cpu.width = 25;
+    cpu.height = 120;
+    cpu.x = 10;
+    cpu.y = height /2 - cpu.height /2;
+    cpu.speed = 6; 
+
+
     //Game Loop
     while(!WindowShouldClose()){
         BeginDrawing();
 
         ball.Update();
         player.Update();
+        cpu.Update(ball.y);
 
         ClearBackground(BLACK);
         DrawLine(width /2, 0, width /2, height, WHITE);
 
         ball.Draw();
         player.Draw();
-
-        //Draw Paddles
-        DrawRectangle(10, height /2 - 60, 25, 120, WHITE);
-        // DrawRectangle(width-35, height /2 - 60, 25, 120, WHITE);
-
+        cpu.Draw();
         
 
         EndDrawing();
