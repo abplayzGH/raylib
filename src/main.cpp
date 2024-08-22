@@ -82,19 +82,21 @@ int main(){
     InitWindow(width, height, "My Pong Game");
     SetTargetFPS(60);
 
-
+    //Ball Properties
     ball.radius = 20;
     ball.x = width /2;
     ball.y = height /2;
     ball.speed_x = 7;
     ball.speed_y = 7;
 
+    //Player Properties
     player.width = 25;
     player.height = 120;
     player.x = width - player.width - 10;
     player.y = height /2 - player.height /2;
     player.speed = 6; 
 
+    //Cpu Properties
     cpu.width = 25;
     cpu.height = 120;
     cpu.x = 10;
@@ -106,6 +108,7 @@ int main(){
     while(!WindowShouldClose()){
         BeginDrawing();
 
+        //Update Objects
         ball.Update();
         player.Update();
         cpu.Update(ball.y);
@@ -113,6 +116,7 @@ int main(){
         ClearBackground(BLACK);
         DrawLine(width /2, 0, width /2, height, WHITE);
 
+        //Draw Objects 
         ball.Draw();
         player.Draw();
         cpu.Draw();
@@ -120,17 +124,6 @@ int main(){
 
         EndDrawing();
     }
-
-
-
-
-
-
-
-
-
-
-
     CloseWindow();
     return 0;
 }
