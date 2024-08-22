@@ -94,8 +94,8 @@ int main(){
     cout << "Starting Game! \n";
 
     //Make Window
-    const int width = 1280;
-    const int height = 800;
+    const int width = 1920;
+    const int height = 1080;
     InitWindow(width, height, "My Pong Game");
     SetTargetFPS(60);
 
