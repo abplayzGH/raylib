@@ -91,6 +91,7 @@ Paddle player;
 CpuPaddle cpu;
 
 int main(){
+    SetExitKey(KEY_NULL);
     cout << "Starting Game! \n";
 
     //Make Window
@@ -124,7 +125,6 @@ int main(){
     //Game Loop
     while(!WindowShouldClose()){
         BeginDrawing();
-
         //Update Objects
         ball.Update();
         player.Update();
